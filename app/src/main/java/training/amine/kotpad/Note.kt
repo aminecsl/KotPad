@@ -2,13 +2,14 @@ package training.amine.kotpad
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.io.Serializable
 
 /**
  *Created by Amine K. on 24/03/20.
  */
 data class Note(var title: String = "",
                 var text: String = "",
-                var fileName: String = "") : Parcelable {
+                var fileName: String = "") : Parcelable, Serializable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
@@ -27,6 +28,7 @@ data class Note(var title: String = "",
     }
 
     companion object CREATOR : Parcelable.Creator<Note> {
+        private val serialVersionUid: Long = 42424242
         override fun createFromParcel(parcel: Parcel): Note {
             return Note(parcel)
         }
